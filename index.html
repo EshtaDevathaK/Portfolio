@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eshta Devatha K — UI/UX Designer | Visual Designer</title>
+  <meta name="description" content="Portfolio of Eshta Devatha K, UI/UX Designer & Visual Designer specializing in intuitive digital products, gaming UI, and responsive web experiences.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-orange: #FF4D00;
+      --primary-orange-hover: #FF6622;
+      --orange-gradient: linear-gradient(135deg, #FF6200 0%, #FF3D00 100%);
+      --bg-dark: #070709;
+      --card-bg: rgba(18, 18, 24, 0.72);
+      --card-bg-hover: rgba(26, 26, 34, 0.85);
+      --card-border: rgba(255, 255, 255, 0.09);
+      --card-border-hover: rgba(255, 77, 0, 0.35);
+      --text-main: #FFFFFF;
+      --text-muted: rgba(255, 255, 255, 0.68);
+      --text-subtle: rgba(255, 255, 255, 0.45);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Natural browser scrolling enabled — NO custom scrollbar hijacking */
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      width: 100%;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-color: var(--bg-dark);
+      line-height: 1.6;
+    }
+
+    /* Fixed full-screen background animation canvas */
+    #scroll-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: block;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Cinematic contrast overlay: keeps background visible while ensuring crystal clear text readability */
+    .canvas-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 40%, rgba(7, 7, 9, 0.35) 0%, rgba(7, 7, 9, 0.82) 85%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Foreground content */
+    .content-wrapper {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* Top Navigation */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(7, 7, 9, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .brand-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-role {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--primary-orange);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+    }
+
+    /* Common Buttons */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--primary-orange);
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      border: none;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 4px 24px rgba(255, 77, 0, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: var(--primary-orange-hover);
+      box-shadow: 0 6px 30px rgba(255, 77, 0, 0.55);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      text-decoration: none;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .btn-icon {
+      width: 14px;
+      height: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-icon svg {
+      width: 100%;
+      height: 100%;
+      fill: currentColor;
+    }
+
+    /* Section Styling */
+    section {
+      padding: 110px 0;
+      position: relative;
+    }
+
+    .section-header {
+      margin-bottom: 56px;
+    }
+
+    .section-header.center {
+      text-align: center;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--primary-orange);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(30px, 4.2vw, 46px);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+
+    .section-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Section 01 — Hero */
+    .hero-section {
+      min-height: calc(100vh - 76px);
+      display: flex;
+      align-items: center;
+      padding: 60px 0 100px;
+    }
+
+    .hero-content {
+      max-width: 820px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: rgba(255, 77, 0, 0.12);
+      border: 1px solid rgba(255, 77, 0, 0.28);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary-orange);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 24px;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--primary-orange);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--primary-orange);
+    }
+
+    .hero-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(40px, 6.2vw, 72px);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+      text-shadow: 0 6px 30px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero-role-title {
+      font-size: clamp(16px, 2.2vw, 22px);
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-role-title span {
+      color: var(--primary-orange);
+    }
+
+    .hero-headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(24px, 3.4vw, 36px);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      color: #FFFFFF;
+    }
+
+    .hero-description {
+      font-size: clamp(15px, 1.3vw, 17px);
+      color: var(--text-muted);
+      line-height: 1.65;
+      max-width: 680px;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .scroll-hint {
+      margin-top: 56px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-subtle);
+    }
+
+    .scroll-hint-line {
+      width: 32px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Section 02 — Selected Work */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--card-border-hover);
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Project Card Thumbnail */
+    .project-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background: #0C0C12;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+      display: block;
+    }
+
+    .project-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .project-card:hover .project-thumb-img {
+      transform: scale(1.04);
+    }
+
+    .project-body {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+
+    .project-category {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary-orange);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    .project-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+
+    .project-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .project-meta-info {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .project-meta-item {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      line-height: 1.4;
+    }
+
+    .project-meta-label {
+      font-weight: 700;
+      color: var(--primary-orange);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+    }
+
+    /* Section 03 — Design Process */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .process-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 26px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 250px;
+      position: relative;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .process-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--card-border-hover);
+    }
+
+    .process-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary-orange);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .process-step-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .process-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Section 04 — What I Do */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 270px;
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--card-border-hover);
+      background: var(--card-bg-hover);
+    }
+
+    .service-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255, 77, 0, 0.12);
+      border: 1px solid rgba(255, 77, 0, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-orange);
+      margin-bottom: 22px;
+    }
+
+    .service-icon-box svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .service-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+
+    .service-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* Section 05 — About Me */
+    .about-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .about-text {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .about-text strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .about-badges-box {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      background: rgba(10, 10, 14, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: var(--radius-md);
+      padding: 28px;
+    }
+
+    .about-fact {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .fact-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 77, 0, 0.12);
+      border: 1px solid rgba(255, 77, 0, 0.25);
+      color: var(--primary-orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .fact-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .fact-text {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .fact-label {
+      font-size: 11px;
+      color: var(--text-subtle);
+    }
+
+    /* Section 06 — Experience */
+    .experience-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .experience-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .experience-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--card-border-hover);
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .exp-role {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .exp-company {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary-orange);
+      margin-top: 2px;
+    }
+
+    .exp-duration {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-subtle);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      letter-spacing: 0.02em;
+    }
+
+    .exp-responsibilities {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .exp-responsibilities li {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      line-height: 1.6;
+    }
+
+    .exp-bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary-orange);
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+
+    /* Section 07 — Skills & Tools */
+    .skills-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .skill-category-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+    }
+
+    .skill-category-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 22px;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .skill-category-title span {
+      width: 8px;
+      height: 8px;
+      background: var(--primary-orange);
+      border-radius: 50%;
+    }
+
+    .chips-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 8px 16px;
+      border-radius: 9999px;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .chip:hover {
+      background: rgba(255, 77, 0, 0.14);
+      border-color: rgba(255, 77, 0, 0.35);
+      transform: translateY(-2px);
+    }
+
+    /* Section 08 — Education & Certifications */
+    .credentials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .credential-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 30px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 220px;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .credential-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--card-border-hover);
+    }
+
+    .credential-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary-orange);
+      margin-bottom: 12px;
+    }
+
+    .credential-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .credential-institution {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .credential-period {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-subtle);
+    }
+
+    /* Section 09 — Contact */
+    .contact-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 56px 40px;
+      text-align: center;
+      max-width: 840px;
+      margin: 0 auto;
+    }
+
+    .contact-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(32px, 4.5vw, 48px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .contact-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 580px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+
+    .contact-info-row {
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-main);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .contact-item-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 77, 0, 0.12);
+      border: 1px solid rgba(255, 77, 0, 0.25);
+      color: var(--primary-orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-item-icon svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .footer {
+      padding: 40px 0;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 12px;
+      color: var(--text-subtle);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 1024px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .about-card {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 32px;
+      }
+      .skills-layout {
+        grid-template-columns: 1fr;
+      }
+      .credentials-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      .container {
+        padding: 0 20px;
+      }
+      section {
+        padding: 70px 0;
+      }
+      .contact-card {
+        padding: 36px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Fixed full-screen scroll animation canvas (Hardware Accelerated) -->
+  <canvas id="scroll-canvas"></canvas>
+  <div class="canvas-overlay"></div>
+
+  <!-- Content Layer -->
+  <div class="content-wrapper">
+
+    <!-- Navigation -->
+    <header class="navbar">
+      <div class="container">
+        <div class="nav-inner">
+          <a href="#" class="brand">
+            <span class="brand-name">Eshta Devatha K</span>
+            <span class="brand-role">UI/UX Designer | Visual Designer</span>
+          </a>
+
+          <ul class="nav-links">
+            <li><a href="#work" class="nav-link">Work</a></li>
+            <li><a href="#process" class="nav-link">Process</a></li>
+            <li><a href="#services" class="nav-link">What I Do</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#experience" class="nav-link">Experience</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+          </ul>
+
+          <a href="#contact" class="btn-primary">
+            Let's Connect
+            <span class="btn-icon">
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Section 01 — Hero -->
+    <section class="hero-section" id="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Available for New Projects
+          </div>
+
+          <h1 class="hero-name">Eshta Devatha K</h1>
+          <div class="hero-role-title">UI/UX Designer <span>|</span> Visual Designer</div>
+
+          <h2 class="hero-headline">Designing Digital Experiences That Work.</h2>
+
+          <p class="hero-description">
+            I design intuitive digital products and responsive web experiences through thoughtful user flows, structured interfaces, and strong visual design.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#work" class="btn-primary">
+              View My Work
+              <span class="btn-icon">
+                <svg viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+              </span>
+            </a>
+            <a href="#contact" class="btn-secondary">Get in Touch</a>
+          </div>
+
+          <div class="scroll-hint">
+            <span class="scroll-hint-line"></span>
+            Scroll to explore portfolio
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 02 — Selected Work -->
+    <section id="work">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Section 02</span>
+          <h2 class="section-title">Selected Work</h2>
+          <p class="section-desc">Featured design projects spanning mobile gaming UI, responsive web applications, and healthcare systems.</p>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project 1: Marma Fintech -->
+          <div class="project-card">
+            <div class="project-thumb">
+              <img src="project-marma-fintech.jpg" alt="Marma Fintech UI/UX Design" class="project-thumb-img" loading="lazy">
+            </div>
+            <div class="project-body">
+              <div>
+                <div class="project-category">UI/UX Design · Fintech · Gaming</div>
+                <h3 class="project-title">Marma Fintech</h3>
+                <p class="project-desc">Designed UI screens for crypto gaming and fantasy cricket products, including splash screens, error states, early access screens, and core user flows. Created 25+ custom avatars and collaborated with developers on UI implementation.</p>
+              </div>
+              <div class="project-meta-info">
+                <div class="project-meta-item">
+                  <span class="project-meta-label">Role:</span>
+                  <span>UI/UX & Visual Design Intern</span>
+                </div>
+                <div class="project-meta-item">
+                  <span class="project-meta-label">Duration:</span>
+                  <span>November 2025 – April 2026</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: Parachute Dubai -->
+          <div class="project-card">
+            <div class="project-thumb">
+              <img src="project-parachute-dubai.jpg" alt="Parachute Dubai Website Design" class="project-thumb-img" loading="lazy">
+            </div>
+            <div class="project-body">
+              <div>
+                <div class="project-category">Website Design · Responsive UI/UX</div>
+                <h3 class="project-title">Parachute Dubai</h3>
+                <p class="project-desc">Designed responsive web and mobile landing pages and service pages, focusing on mobile-first layouts, clear calls to action, and structured information architecture.</p>
+              </div>
+              <div class="project-meta-info">
+                <div class="project-meta-item">
+                  <span class="project-meta-label">Role:</span>
+                  <span>UI/UX Design Intern</span>
+                </div>
+                <div class="project-meta-item">
+                  <span class="project-meta-label">Company:</span>
+                  <span>Moksha Media Production Pvt. Ltd.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: 108 Doctors -->
+          <div class="project-card">
+            <div class="project-thumb">
+              <img src="project-108-doctors.jpg" alt="108 Doctors Healthcare Website UI" class="project-thumb-img" loading="lazy">
+            </div>
+            <div class="project-body">
+              <div>
+                <div class="project-category">Healthcare · Website Design · UI/UX</div>
+                <h3 class="project-title">108 Doctors</h3>
+                <p class="project-desc">Designed the 108 Doctors logo and multi-page website UI, maintaining consistent typography, colors, and reusable components.</p>
+              </div>
+              <div class="project-meta-info">
+                <div class="project-meta-item">
+                  <span class="project-meta-label">Role:</span>
+                  <span>UI/UX Design Intern</span>
+                </div>
+                <div class="project-meta-item">
+                  <span class="project-meta-label">Company:</span>
+                  <span>Moksha Media Production Pvt. Ltd.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4: Market Mind -->
+          <div class="project-card">
+            <div class="project-thumb">
+              <img src="project-market-mind.jpg" alt="Market Mind Website Design" class="project-thumb-img" loading="lazy">
+            </div>
+            <div class="project-body">
+              <div>
+                <div class="project-category">Website Design · UI/UX</div>
+                <h3 class="project-title">Market Mind</h3>
+                <p class="project-desc">Worked on the website from scratch, creating user flows, wireframes, and high-fidelity landing page designs.</p>
+              </div>
+              <div class="project-meta-info">
+                <div class="project-meta-item">
+                  <span class="project-meta-label">Role:</span>
+                  <span>UI/UX Design Intern</span>
+                </div>
+                <div class="project-meta-item">
+                  <span class="project-meta-label">Company:</span>
+                  <span>Moksha Media Production Pvt. Ltd.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 03 — Design Process -->
+    <section id="process">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Section 03</span>
+          <h2 class="section-title">Design Process</h2>
+          <p class="section-desc">A structured five-stage methodology that transforms user needs and business goals into scalable interfaces.</p>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-card">
+            <div class="process-num">01</div>
+            <div>
+              <h3 class="process-step-title">Understand</h3>
+              <p class="process-desc">Discovering user goals, market research, business constraints, and defining core problem statements.</p>
+            </div>
+          </div>
+
+          <div class="process-card">
+            <div class="process-num">02</div>
+            <div>
+              <h3 class="process-step-title">Structure</h3>
+              <p class="process-desc">Mapping user flows, content hierarchy, information architecture, and core interaction patterns.</p>
+            </div>
+          </div>
+
+          <div class="process-card">
+            <div class="process-num">03</div>
+            <div>
+              <h3 class="process-step-title">Wireframe</h3>
+              <p class="process-desc">Creating low and mid-fidelity wireframes to iterate swiftly on layout composition and usability.</p>
+            </div>
+          </div>
+
+          <div class="process-card">
+            <div class="process-num">04</div>
+            <div>
+              <h3 class="process-step-title">Design</h3>
+              <p class="process-desc">Crafting pixel-perfect high-fidelity visual interfaces with consistent typography, color palettes, and design tokens.</p>
+            </div>
+          </div>
+
+          <div class="process-card">
+            <div class="process-num">05</div>
+            <div>
+              <h3 class="process-step-title">Prototype & Handoff</h3>
+              <p class="process-desc">Building interactive prototypes, conducting user testing, and delivering production-ready developer specifications.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 04 — What I Do -->
+    <section id="services">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Section 04</span>
+          <h2 class="section-title">What I Do</h2>
+          <p class="section-desc">Core competencies tailored for product teams, early-stage startups, and growing enterprises.</p>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+            <div>
+              <h3 class="service-title">UI/UX Design</h3>
+              <p class="service-desc">Creating intuitive, visually engaging digital products with structured user flows and seamless interactions.</p>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+              </svg>
+            </div>
+            <div>
+              <h3 class="service-title">Responsive Website Design</h3>
+              <p class="service-desc">Designing web experiences that adapt fluidly across desktop, tablet, and mobile with mobile-first layouts.</p>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <div>
+              <h3 class="service-title">Wireframing & Prototyping</h3>
+              <p class="service-desc">Translating concepts into testable, clickable wireframes and prototypes to validate ideas before engineering handoff.</p>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+              </svg>
+            </div>
+            <div>
+              <h3 class="service-title">Graphic & Visual Design</h3>
+              <p class="service-desc">Building coherent visual identities, brand systems, typography, color palettes, and product packaging.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 05 — About Me -->
+    <section id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Section 05</span>
+          <h2 class="section-title">About Me</h2>
+        </div>
+
+        <div class="about-card">
+          <div class="about-text">
+            <p>
+              I am a <strong>UI/UX and Visual Designer</strong> dedicated to shaping digital products that balance aesthetic beauty with practical utility.
+            </p>
+            <p>
+              My background includes hands-on experience designing for <strong>gaming products and web applications</strong>, alongside crafting responsive commercial websites, visual branding systems, and product packaging.
+            </p>
+            <p>
+              Whether structuring complex information architecture or designing fine-tuned micro-interactions, I focus on creating interfaces that feel effortless to navigate and genuinely solve problems for users.
+            </p>
+          </div>
+
+          <div class="about-badges-box">
+            <div class="about-fact">
+              <div class="fact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <div class="fact-text">Bengaluru, Karnataka – 560043</div>
+                <div class="fact-label">Location</div>
+              </div>
+            </div>
+
+            <div class="about-fact">
+              <div class="fact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              </div>
+              <div>
+                <div class="fact-text">Product & Gaming UI</div>
+                <div class="fact-label">Domain Expertise</div>
+              </div>
+            </div>
+
+            <div class="about-fact">
+              <div class="fact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <div>
+                <div class="fact-text">End-to-End Delivery</div>
+                <div class="fact-label">Research to Dev Handoff</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 06 — Experience -->
+    <section id="experience">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Section 06</span>
+          <h2 class="section-title">Experience</h2>
+          <p class="section-desc">Hands-on industry experience delivering production interfaces and creative solutions.</p>
+        </div>
+
+        <div class="experience-list">
+          <!-- Experience 1 -->
+          <div class="experience-card">
+            <div class="exp-header">
+              <div>
+                <h3 class="exp-role">UI/UX Intern</h3>
+                <div class="exp-company">Moksha Media Production Pvt. Ltd.</div>
+              </div>
+              <span class="exp-duration">May 2026 – Present</span>
+            </div>
+            <ul class="exp-responsibilities">
+              <li>
+                <span class="exp-bullet"></span>
+                <span>Designing responsive web layouts, digital interfaces, and marketing assets tailored for client campaigns.</span>
+              </li>
+              <li>
+                <span class="exp-bullet"></span>
+                <span>Collaborating across creative teams to establish consistent visual branding, typography standards, and color schemes.</span>
+              </li>
+              <li>
+                <span class="exp-bullet"></span>
+                <span>Iterating on feedback, refining component libraries, and preparing polished design files for development teams.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Experience 2 -->
+          <div class="experience-card">
+            <div class="exp-header">
+              <div>
+                <h3 class="exp-role">UI/UX & Visual Design Intern</h3>
+                <div class="exp-company">Marma Fintech</div>
+              </div>
+              <span class="exp-duration">November 2025 – April 2026</span>
+            </div>
+            <ul class="exp-responsibilities">
+              <li>
+                <span class="exp-bullet"></span>
+                <span>Designed core product UI screens for crypto gaming and fantasy cricket applications with engaging user journeys.</span>
+              </li>
+              <li>
+                <span class="exp-bullet"></span>
+                <span>Created custom 2D/3D-styled avatars, game elements, onboarding flows, and reward screens.</span>
+              </li>
+              <li>
+                <span class="exp-bullet"></span>
+                <span>Collaborated directly with frontend engineers to inspect implementations and ensure high fidelity across mobile screen sizes.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 07 — Skills & Tools -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Section 07</span>
+          <h2 class="section-title">Skills & Tools</h2>
+          <p class="section-desc">Software stack and design methodologies utilized daily in my workflow.</p>
+        </div>
+
+        <div class="skills-layout">
+          <!-- Tools -->
+          <div class="skill-category-card">
+            <h3 class="skill-category-title">
+              <span></span> Design & Prototyping Tools
+            </h3>
+            <div class="chips-group">
+              <span class="chip">Figma</span>
+              <span class="chip">Adobe XD</span>
+              <span class="chip">Photoshop</span>
+              <span class="chip">Notion</span>
+              <span class="chip">Miro</span>
+              <span class="chip">Framer (Basic understanding)</span>
+              <span class="chip">Canva</span>
+            </div>
+          </div>
+
+          <!-- Skills -->
+          <div class="skill-category-card">
+            <h3 class="skill-category-title">
+              <span></span> Core Competencies
+            </h3>
+            <div class="chips-group">
+              <span class="chip">User Flows</span>
+              <span class="chip">Wireframing</span>
+              <span class="chip">Interactive Prototyping</span>
+              <span class="chip">Interaction Design</span>
+              <span class="chip">Information Architecture</span>
+              <span class="chip">Visual Design</span>
+              <span class="chip">Design Systems</span>
+              <span class="chip">Responsive Web Layouts</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 08 — Education & Certifications -->
+    <section id="education">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Section 08</span>
+          <h2 class="section-title">Education & Certifications</h2>
+          <p class="section-desc">Academic foundation and recognized professional training credentials.</p>
+        </div>
+
+        <div class="credentials-grid">
+          <!-- Degree -->
+          <div class="credential-card">
+            <div>
+              <div class="credential-badge">Master's Degree</div>
+              <h3 class="credential-title">M.Sc. in Information Technology</h3>
+              <p class="credential-institution">Sri Krishna College of Arts & Science</p>
+            </div>
+            <div class="credential-period">2024 – 2026</div>
+          </div>
+
+          <!-- Cert 1 -->
+          <div class="credential-card">
+            <div>
+              <div class="credential-badge">Certification</div>
+              <h3 class="credential-title">UI/UX Design Certification</h3>
+              <p class="credential-institution">Udemy</p>
+            </div>
+            <div class="credential-period">Verified Credential</div>
+          </div>
+
+          <!-- Cert 2 -->
+          <div class="credential-card">
+            <div>
+              <div class="credential-badge">Certification</div>
+              <h3 class="credential-title">Full Stack Development Certification</h3>
+              <p class="credential-institution">Apna College</p>
+            </div>
+            <div class="credential-period">Verified Credential</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 09 — Contact -->
+    <section id="contact">
+      <div class="container">
+        <div class="contact-card">
+          <span class="section-tag">Section 09 • Get in Touch</span>
+          <h2 class="contact-title">Let's Connect</h2>
+          <p class="contact-desc">
+            I am currently open to exciting UI/UX design opportunities, freelance collaborations, and product design roles. Let's build something remarkable together.
+          </p>
+
+          <div class="contact-info-row">
+            <a href="mailto:eshtadevatha06@gmail.com" class="contact-item">
+              <span class="contact-item-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </span>
+              <span>eshtadevatha06@gmail.com</span>
+            </a>
+
+            <div class="contact-item">
+              <span class="contact-item-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </span>
+              <span>Bengaluru, Karnataka – 560043</span>
+            </div>
+          </div>
+
+          <a href="mailto:eshtadevatha06@gmail.com" class="btn-primary">
+            Send Message
+            <span class="btn-icon">
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2026 Eshta Devatha K. All rights reserved. Designed with precision & purpose.</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Smooth Background Scroll Animation Engine -->
+  <script>
+    (function () {
+      const TOTAL_FRAMES = 240;
+      const canvas = document.getElementById('scroll-canvas');
+      const ctx = canvas.getContext('2d', { alpha: false });
+
+      const images = new Array(TOTAL_FRAMES);
+      let targetProgress = 0;
+      let currentProgress = 0;
+      let lastRenderedImg = null;
+
+      // Check user reduced motion preference
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const LERP_FACTOR = prefersReducedMotion ? 1.0 : 0.12;
+
+      function getFrameSrc(index) {
+        const frameNum = String(index + 1).padStart(3, '0');
+        return `ezgif-frame-${frameNum}.jpg`;
+      }
+
+      function resizeCanvas() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const w = Math.round(window.innerWidth * dpr);
+        const h = Math.round(window.innerHeight * dpr);
+
+        if (canvas.width !== w || canvas.height !== h) {
+          canvas.width = w;
+          canvas.height = h;
+        }
+
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+
+        const currentIdx = Math.min(
+          TOTAL_FRAMES - 1,
+          Math.max(0, Math.round(currentProgress * (TOTAL_FRAMES - 1)))
+        );
+        renderFrame(currentIdx, true);
+      }
+
+      function drawImageCover(img) {
+        if (!img || !img.complete || img.naturalWidth === 0) return;
+
+        const cw = canvas.width;
+        const ch = canvas.height;
+        const iw = img.naturalWidth;
+        const ih = img.naturalHeight;
+
+        // Cover fit centered
+        const scale = Math.max(cw / iw, ch / ih);
+        const nw = iw * scale;
+        const nh = ih * scale;
+        const nx = (cw - nw) / 2;
+        const ny = (ch - nh) / 2;
+
+        ctx.drawImage(img, nx, ny, nw, nh);
+      }
+
+      function getLoadedFrame(targetIdx) {
+        if (images[targetIdx] && images[targetIdx].complete && images[targetIdx].naturalWidth > 0) {
+          return images[targetIdx];
+        }
+
+        // Search outward for closest loaded frame
+        for (let offset = 1; offset < TOTAL_FRAMES; offset++) {
+          const prev = targetIdx - offset;
+          if (prev >= 0 && images[prev] && images[prev].complete && images[prev].naturalWidth > 0) {
+            return images[prev];
+          }
+          const next = targetIdx + offset;
+          if (next < TOTAL_FRAMES && images[next] && images[next].complete && images[next].naturalWidth > 0) {
+            return images[next];
+          }
+        }
+        return null;
+      }
+
+      function renderFrame(index, forceRedraw = false) {
+        const img = getLoadedFrame(index);
+        if (img && (img !== lastRenderedImg || forceRedraw)) {
+          drawImageCover(img);
+          lastRenderedImg = img;
+        }
+      }
+
+      // Sync with natural vertical page scroll progress on every frame
+      function getScrollProgress() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+        const maxScroll = Math.max(1, scrollHeight - window.innerHeight);
+        return Math.min(1, Math.max(0, scrollTop / maxScroll));
+      }
+
+      function loop() {
+        // Continuous sync with real browser scroll progress
+        targetProgress = getScrollProgress();
+
+        if (prefersReducedMotion) {
+          currentProgress = targetProgress;
+        } else {
+          const diff = targetProgress - currentProgress;
+          if (Math.abs(diff) > 0.0001) {
+            currentProgress += diff * LERP_FACTOR;
+          } else {
+            currentProgress = targetProgress;
+          }
+        }
+
+        const frameIndex = Math.min(
+          TOTAL_FRAMES - 1,
+          Math.max(0, Math.round(currentProgress * (TOTAL_FRAMES - 1)))
+        );
+
+        renderFrame(frameIndex);
+
+        requestAnimationFrame(loop);
+      }
+
+      function preloadImages() {
+        // Immediate display of frame 0
+        const firstImg = new Image();
+        firstImg.src = getFrameSrc(0);
+        images[0] = firstImg;
+
+        firstImg.onload = function () {
+          resizeCanvas();
+          renderFrame(0, true);
+        };
+
+        // Preload remaining frames in parallel
+        for (let i = 1; i < TOTAL_FRAMES; i++) {
+          const img = new Image();
+          img.src = getFrameSrc(i);
+          img.onload = function () {
+            const currentIdx = Math.min(
+              TOTAL_FRAMES - 1,
+              Math.max(0, Math.round(currentProgress * (TOTAL_FRAMES - 1)))
+            );
+            if (currentIdx === i) {
+              renderFrame(i, true);
+            }
+          };
+          images[i] = img;
+        }
+      }
+
+      // Pure native window events — no custom drag or sidebar hijack
+      window.addEventListener('resize', resizeCanvas);
+
+      resizeCanvas();
+      preloadImages();
+      targetProgress = getScrollProgress();
+      currentProgress = targetProgress;
+      requestAnimationFrame(loop);
+    })();
+  </script>
+</body>
+</html>
