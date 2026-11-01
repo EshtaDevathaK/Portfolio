@@ -50,7 +50,7 @@ const server = http.createServer((req, res) => {
     };
 
     if (ext === '.jpg' || ext === '.jpeg' || ext === '.png') {
-      headers['Cache-Control'] = 'public, max-age=86400, immutable';
+      headers['Cache-Control'] = 'no-cache, must-revalidate';
     } else {
       headers['Cache-Control'] = 'no-cache';
     }

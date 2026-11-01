@@ -455,6 +455,393 @@
       flex-shrink: 0;
     }
 
+    /* Section 02B — Graphic Design Projects */
+    .gd-card {
+      cursor: pointer;
+      position: relative;
+    }
+
+    .gd-card:focus-visible {
+      outline: 2px solid var(--primary-orange);
+      outline-offset: 4px;
+    }
+
+    .gd-card-badge {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      background: rgba(7, 7, 9, 0.85);
+      border: 1px solid rgba(255, 77, 0, 0.4);
+      color: var(--primary-orange);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.9;
+      transition: all 0.2s ease;
+      pointer-events: none;
+    }
+
+    .gd-card:hover .gd-card-badge {
+      opacity: 1;
+      background: var(--primary-orange);
+      color: #FFFFFF;
+      box-shadow: 0 4px 16px rgba(255, 77, 0, 0.4);
+    }
+
+    /* Protection against right-click save and dragging (NO DOWNLOADS) */
+    .gd-protected,
+    #graphic-design img,
+    .gd-modal-dialog img {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-user-drag: none;
+      -khtml-user-drag: none;
+      -moz-user-drag: none;
+      -o-user-drag: none;
+    }
+
+    /* Preview Modal (Mini Case Study) */
+    .gd-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(7, 7, 9, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .gd-modal-backdrop.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .gd-modal-dialog {
+      background: rgba(14, 14, 20, 0.97);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 1180px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.9);
+      transform: translateY(20px) scale(0.98);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    .gd-modal-backdrop.is-open .gd-modal-dialog {
+      transform: translateY(0) scale(1);
+    }
+
+    .gd-modal-header {
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(18, 18, 24, 0.7);
+      flex-shrink: 0;
+    }
+
+    .gd-modal-header-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .gd-modal-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary-orange);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .gd-modal-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+    }
+
+    .gd-modal-close-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .gd-modal-close-btn:hover {
+      background: rgba(255, 77, 0, 0.25);
+      border-color: var(--primary-orange);
+      color: var(--primary-orange);
+      transform: rotate(90deg);
+    }
+
+    .gd-modal-close-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .gd-modal-body {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      overflow-y: auto;
+      max-height: calc(90vh - 84px);
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .gd-modal-artwork-col {
+      padding: 28px;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(8, 8, 12, 0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .gd-artwork-stage {
+      width: 100%;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #08080C;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+    }
+
+    .gd-artwork-stage img {
+      width: 100%;
+      height: auto;
+      max-height: 520px;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* Amazon Listing Gallery */
+    .gd-gallery-block {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .gd-gallery-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .gd-gallery-title::before {
+      content: '';
+      width: 4px;
+      height: 14px;
+      background: var(--primary-orange);
+      border-radius: 2px;
+    }
+
+    .gd-gallery-strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    .gd-gallery-thumb-btn {
+      background: rgba(18, 18, 24, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-sm);
+      padding: 6px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-align: left;
+      transition: all 0.2s ease;
+    }
+
+    .gd-gallery-thumb-btn:hover {
+      border-color: rgba(255, 77, 0, 0.4);
+      background: rgba(26, 26, 34, 0.9);
+      transform: translateY(-2px);
+    }
+
+    .gd-gallery-thumb-btn.is-active {
+      border-color: var(--primary-orange);
+      background: rgba(255, 77, 0, 0.12);
+      box-shadow: 0 0 12px rgba(255, 77, 0, 0.3);
+    }
+
+    .gd-gallery-thumb-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 4px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gd-gallery-thumb-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-muted);
+      line-height: 1.2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .gd-gallery-thumb-btn.is-active .gd-gallery-thumb-label {
+      color: var(--primary-orange);
+      font-weight: 700;
+    }
+
+    /* Modal Study Column */
+    .gd-modal-study-col {
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .gd-study-header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 14px;
+    }
+
+    .gd-study-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .gd-study-section {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .gd-study-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary-orange);
+    }
+
+    .gd-study-text {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* Color Swatches Grid */
+    .gd-swatches-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .gd-swatch-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 9999px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+
+    .gd-swatch-circle {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      flex-shrink: 0;
+    }
+
+    .gd-swatch-hex {
+      font-family: 'Space Grotesk', monospace;
+      font-weight: 600;
+      color: var(--text-main);
+      font-size: 11px;
+    }
+
+    .gd-tools-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(255, 77, 0, 0.1);
+      border: 1px solid rgba(255, 77, 0, 0.3);
+      border-radius: var(--radius-sm);
+      color: #FFFFFF;
+      font-size: 12.5px;
+      font-weight: 600;
+      width: fit-content;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 900px) {
+      .gd-modal-body {
+        grid-template-columns: 1fr;
+      }
+      .gd-modal-artwork-col {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 20px;
+      }
+      .gd-modal-study-col {
+        padding: 20px;
+      }
+      .gd-artwork-stage img {
+        max-height: 380px;
+      }
+      .gd-gallery-strip {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
     /* Section 03 — Design Process */
     .process-grid {
       display: grid;
@@ -968,6 +1355,7 @@
 
           <ul class="nav-links">
             <li><a href="#work" class="nav-link">Work</a></li>
+            <li><a href="#graphic-design" class="nav-link">Graphic Design</a></li>
             <li><a href="#process" class="nav-link">Process</a></li>
             <li><a href="#services" class="nav-link">What I Do</a></li>
             <li><a href="#about" class="nav-link">About</a></li>
@@ -1123,6 +1511,119 @@
                 <div class="project-meta-item">
                   <span class="project-meta-label">Company:</span>
                   <span>Moksha Media Production Pvt. Ltd.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 02B — Graphic Design Projects -->
+    <section id="graphic-design">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Section 02B</span>
+          <h2 class="section-title">Graphic Design Projects</h2>
+          <p class="section-desc">Personal concept posters and brand packaging systems showcasing creative direction, digital manipulation, and visual storytelling.</p>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Poster 1: Terra Stride -->
+          <div class="project-card gd-card" tabindex="0" role="button" aria-haspopup="dialog" data-project-id="terra-stride">
+            <div class="project-thumb">
+              <img src="public/graphic-design/terra-stride-thumb.jpg" alt="Terra Stride sneaker campaign poster design in warm earth tones" class="project-thumb-img gd-protected" loading="lazy" draggable="false">
+              <div class="gd-card-badge">View Case Study</div>
+            </div>
+            <div class="project-body">
+              <div>
+                <div class="project-category">Poster Design · Sneaker Campaign</div>
+                <h3 class="project-title">Terra Stride</h3>
+                <p class="project-desc">An earth-toned promotional footwear campaign poster balancing kinetic suspended motion with warm vintage paper grain and bold condensed typography.</p>
+              </div>
+              <div class="project-meta-info">
+                <div class="project-meta-item">
+                  <span class="project-meta-label">Role:</span>
+                  <span>Graphic Designer</span>
+                </div>
+                <div class="project-meta-item">
+                  <span class="project-meta-label">Type:</span>
+                  <span>Personal Concept Work</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Poster 2: Ember & Stack -->
+          <div class="project-card gd-card" tabindex="0" role="button" aria-haspopup="dialog" data-project-id="ember-and-stack">
+            <div class="project-thumb">
+              <img src="public/graphic-design/ember-and-stack-thumb.jpg" alt="Ember & Stack gourmet burger promotional poster design with rich red background" class="project-thumb-img gd-protected" loading="lazy" draggable="false">
+              <div class="gd-card-badge">View Case Study</div>
+            </div>
+            <div class="project-body">
+              <div>
+                <div class="project-category">Poster Design · Food Promotion</div>
+                <h3 class="project-title">Ember & Stack</h3>
+                <p class="project-desc">A high-energy culinary promotional poster celebrating artisan gourmet burgers with appetizing color saturation, playful 3D badges, and dynamic callouts.</p>
+              </div>
+              <div class="project-meta-info">
+                <div class="project-meta-item">
+                  <span class="project-meta-label">Role:</span>
+                  <span>Graphic Designer</span>
+                </div>
+                <div class="project-meta-item">
+                  <span class="project-meta-label">Type:</span>
+                  <span>Personal Concept Work</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Poster 3: Silent Sky -->
+          <div class="project-card gd-card" tabindex="0" role="button" aria-haspopup="dialog" data-project-id="silent-sky">
+            <div class="project-thumb">
+              <img src="public/graphic-design/silent-sky-thumb.jpg" alt="Silent Sky cinematic concept poster design with dramatic lighting and hypnotic sky vortex" class="project-thumb-img gd-protected" loading="lazy" draggable="false">
+              <div class="gd-card-badge">View Case Study</div>
+            </div>
+            <div class="project-body">
+              <div>
+                <div class="project-category">Poster Design · Cinematic Concept</div>
+                <h3 class="project-title">Silent Sky</h3>
+                <p class="project-desc">A suspenseful cinematic concept poster exploring cosmic dread and human curiosity through hypnotic concentric line patterns and ominous high-contrast silhouettes.</p>
+              </div>
+              <div class="project-meta-info">
+                <div class="project-meta-item">
+                  <span class="project-meta-label">Role:</span>
+                  <span>Graphic Designer</span>
+                </div>
+                <div class="project-meta-item">
+                  <span class="project-meta-label">Type:</span>
+                  <span>Personal Concept Work</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Package Design: Verdant Ritual -->
+          <div class="project-card gd-card" tabindex="0" role="button" aria-haspopup="dialog" data-project-id="verdant-ritual">
+            <div class="project-thumb">
+              <img src="public/graphic-design/verdant-ritual-label-red-thumb.jpg" alt="Verdant Ritual botanical supplement packaging label and e-commerce gallery" class="project-thumb-img gd-protected" loading="lazy" draggable="false">
+              <div class="gd-card-badge">View Case Study</div>
+            </div>
+            <div class="project-body">
+              <div>
+                <div class="project-category">Packaging · Wellness Brand System</div>
+                <h3 class="project-title">Origin 108</h3>
+                <p class="project-desc">A holistic botanical wellness identity spanning a precision pharmaceutical supplement label and an Amazon A+ conversion-focused listing gallery.</p>
+              </div>
+              <div class="project-meta-info">
+                <div class="project-meta-item">
+                  <span class="project-meta-label">Role:</span>
+                  <span>Graphic Designer</span>
+                </div>
+                <div class="project-meta-item">
+                  <span class="project-meta-label">Type:</span>
+                  <span>Packaging & Brand System</span>
                 </div>
               </div>
             </div>
@@ -1502,7 +2003,234 @@
       </div>
     </footer>
 
+    <!-- Graphic Design Mini Case Study Modal -->
+    <div class="gd-modal-backdrop" id="gd-modal" role="dialog" aria-modal="true" aria-labelledby="gd-modal-title" aria-hidden="true">
+      <div class="gd-modal-dialog">
+        <div class="gd-modal-header">
+          <div class="gd-modal-header-info">
+            <span class="gd-modal-tag" id="gd-modal-tag">Poster Design</span>
+            <h3 class="gd-modal-title" id="gd-modal-title">Project Title</h3>
+          </div>
+          <button type="button" class="gd-modal-close-btn" id="gd-modal-close" aria-label="Close case study modal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <div class="gd-modal-body">
+          <div class="gd-modal-artwork-col">
+            <div class="gd-artwork-stage">
+              <img id="gd-modal-main-img" src="" alt="" class="gd-protected" draggable="false">
+            </div>
+            <div class="gd-gallery-block" id="gd-modal-gallery-block" style="display: none;">
+              <h4 class="gd-gallery-title">Amazon Listing Images</h4>
+              <div class="gd-gallery-strip" id="gd-modal-gallery-strip"></div>
+              <p class="gd-study-text" id="gd-modal-gallery-caption" style="font-size: 12px; font-style: italic;"></p>
+            </div>
+          </div>
+
+          <div class="gd-modal-study-col">
+            <div class="gd-study-header">
+              <h4 class="gd-study-heading">
+                <span style="color: var(--primary-orange);">✦</span>
+                How I Designed It
+              </h4>
+            </div>
+
+            <div class="gd-study-section">
+              <span class="gd-study-label">Concept</span>
+              <p class="gd-study-text" id="gd-study-concept"></p>
+            </div>
+
+            <div class="gd-study-section">
+              <span class="gd-study-label">Color Palette</span>
+              <div class="gd-swatches-grid" id="gd-study-swatches"></div>
+            </div>
+
+            <div class="gd-study-section">
+              <span class="gd-study-label">Typography</span>
+              <p class="gd-study-text" id="gd-study-typography"></p>
+            </div>
+
+            <div class="gd-study-section">
+              <span class="gd-study-label">Layout & Composition</span>
+              <p class="gd-study-text" id="gd-study-layout"></p>
+            </div>
+
+            <div class="gd-study-section">
+              <span class="gd-study-label">Tools Used</span>
+              <div class="gd-tools-badge" id="gd-study-tools">Photoshop</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
+
+  <!-- Graphic Design Projects Modal Logic -->
+  <script src="graphic-design-data.js"></script>
+  <script>
+    (function () {
+      const modal = document.getElementById('gd-modal');
+      const closeBtn = document.getElementById('gd-modal-close');
+      const modalTag = document.getElementById('gd-modal-tag');
+      const modalTitle = document.getElementById('gd-modal-title');
+      const mainImg = document.getElementById('gd-modal-main-img');
+      const galleryBlock = document.getElementById('gd-modal-gallery-block');
+      const galleryStrip = document.getElementById('gd-modal-gallery-strip');
+      const galleryCaption = document.getElementById('gd-modal-gallery-caption');
+      const conceptText = document.getElementById('gd-study-concept');
+      const swatchesGrid = document.getElementById('gd-study-swatches');
+      const typoText = document.getElementById('gd-study-typography');
+      const layoutText = document.getElementById('gd-study-layout');
+      const toolsBadge = document.getElementById('gd-study-tools');
+
+      let lastFocusedElement = null;
+
+      function openModal(projectId) {
+        if (typeof GRAPHIC_DESIGN_PROJECTS === 'undefined') return;
+        const project = GRAPHIC_DESIGN_PROJECTS.find(p => p.id === projectId);
+        if (!project) return;
+
+        lastFocusedElement = document.activeElement;
+
+        modalTag.textContent = project.subtitle;
+        modalTitle.textContent = project.title;
+        mainImg.src = project.coverImage;
+        mainImg.alt = project.alt;
+
+        conceptText.textContent = project.caseStudy.concept;
+        typoText.textContent = project.caseStudy.typography;
+        layoutText.textContent = project.caseStudy.layout;
+        toolsBadge.textContent = project.caseStudy.tools;
+
+        // Populate Color Palette Swatches
+        swatchesGrid.innerHTML = '';
+        project.caseStudy.colorPalette.forEach(swatch => {
+          const item = document.createElement('div');
+          item.className = 'gd-swatch-item';
+          item.innerHTML = `
+            <span class="gd-swatch-circle" style="background-color: ${swatch.hex};"></span>
+            <span>${swatch.name}</span>
+            <span class="gd-swatch-hex">${swatch.hex}</span>
+          `;
+          swatchesGrid.appendChild(item);
+        });
+
+        // Package Design Gallery
+        if (project.isPackage && project.gallery && project.gallery.length > 0) {
+          galleryBlock.style.display = 'flex';
+          galleryStrip.innerHTML = '';
+
+          // Add label button as initial active item
+          const labelBtn = document.createElement('button');
+          labelBtn.type = 'button';
+          labelBtn.className = 'gd-gallery-thumb-btn is-active';
+          labelBtn.innerHTML = `
+            <img src="${project.thumbImage}" alt="${project.title} Label" class="gd-gallery-thumb-img gd-protected" draggable="false">
+            <span class="gd-gallery-thumb-label">Packaging Label</span>
+          `;
+          labelBtn.addEventListener('click', () => {
+            galleryStrip.querySelectorAll('.gd-gallery-thumb-btn').forEach(btn => btn.classList.remove('is-active'));
+            labelBtn.classList.add('is-active');
+            mainImg.src = project.coverImage;
+            mainImg.alt = project.alt;
+            galleryCaption.textContent = "Primary packaging dieline label design showing brand hierarchy and regulatory panels.";
+          });
+          galleryStrip.appendChild(labelBtn);
+
+          project.gallery.forEach(item => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'gd-gallery-thumb-btn';
+            btn.innerHTML = `
+              <img src="${item.thumb}" alt="${item.title}" class="gd-gallery-thumb-img gd-protected" draggable="false">
+              <span class="gd-gallery-thumb-label">${item.title}</span>
+            `;
+            btn.addEventListener('click', () => {
+              galleryStrip.querySelectorAll('.gd-gallery-thumb-btn').forEach(b => b.classList.remove('is-active'));
+              btn.classList.add('is-active');
+              mainImg.src = item.image;
+              mainImg.alt = item.title;
+              galleryCaption.textContent = item.caption;
+            });
+            galleryStrip.appendChild(btn);
+          });
+
+          galleryCaption.textContent = "Primary packaging dieline label design showing brand hierarchy and regulatory panels.";
+        } else {
+          galleryBlock.style.display = 'none';
+          galleryStrip.innerHTML = '';
+          galleryCaption.textContent = '';
+        }
+
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+      }
+
+      function closeModal() {
+        if (!modal.classList.contains('is-open')) return;
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (lastFocusedElement) {
+          lastFocusedElement.focus();
+        }
+      }
+
+      // Card click & keyboard event listeners
+      document.querySelectorAll('.gd-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const id = card.getAttribute('data-project-id');
+          openModal(id);
+        });
+        card.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            const id = card.getAttribute('data-project-id');
+            openModal(id);
+          }
+        });
+      });
+
+      // Close button
+      closeBtn.addEventListener('click', closeModal);
+
+      // Outside click to close
+      modal.addEventListener('click', e => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+
+      // Esc key to close
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+          closeModal();
+        }
+      });
+
+      // Disable right-click and dragging on all graphic design artwork (NO DOWNLOADS)
+      const protectedContainers = document.querySelectorAll('#graphic-design, #gd-modal');
+      protectedContainers.forEach(container => {
+        container.addEventListener('contextmenu', e => {
+          if (e.target.tagName === 'IMG' || e.target.closest('.project-thumb') || e.target.closest('.gd-artwork-stage')) {
+            e.preventDefault();
+          }
+        });
+        container.addEventListener('dragstart', e => {
+          if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+          }
+        });
+      });
+    })();
+  </script>
 
   <!-- Smooth Background Scroll Animation Engine -->
   <script>
